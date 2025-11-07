@@ -3520,7 +3520,7 @@ const FriendsTab = () => {
     if (typeof window !== 'undefined' && (navigator as any).share) {
       try {
         await (navigator as any).share({
-          title: 'Join me on NanoV1',
+          title: 'Join me on RevenueEarn',
           text: 'Earn money by completing tasks and watching ads!',
           url: referUrl,
         })
