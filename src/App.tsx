@@ -1776,7 +1776,7 @@ const HomeTab: React.FC = () => {
 
 // Server Configuration for Tasks
 const SERVER_CONFIG = {
-  baseUrl: 'https://a379d854-25b7-45dd-b605-556dad73e303.e1-us-east-azure.choreoapps.dev',
+  baseUrl: 'https://7a04fb8f-f6f0-44ff-81aa-4749b3cbe3cd.e1-us-east-azure.choreoapps.dev',
   endpoints: {
     telegram: '/api/telegram/check-membership',
     connect: '/api/frontend/connect',
