@@ -3734,76 +3734,87 @@ function ProfileHeader({ onOpenWallet }: { onOpenWallet: () => void }) {
 
   return (
     <section aria-label="Profile header" className="w-full max-w-3xl">
-      <div className="relative -mt-12 sm:-mt-16 mx-3 sm:mx-6">
-        <div className="relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-xl">
-          <div className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-gradient-to-b from-white/20 to-transparent" />
+  <div className="relative -mt-12 sm:-mt-16 mx-3 sm:mx-6">
+    <div className="relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-xl">
+      <div className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-gradient-to-b from-white/20 to-transparent" />
 
-          <div className="p-5 sm:p-7">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-5">
-              <div className="flex items-center gap-24 shrink-0">
-                <div className="relative h-24 w-24">
-                  <span className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-[#22d3ee] via-[#3b82f6] to-[#a855f7] opacity-70 blur" />
-                  <div className="relative h-24 w-24 rounded-full overflow-hidden ring-2 ring-white/20 bg-black/40">
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
-                      {tgUser?.first_name?.[0]?.toUpperCase() || 'U'}
-                    </div>
-                  </div>
-                  <span className="absolute -bottom-1 -right-1 rounded-full bg-black/60 ring-1 ring-green-400/20 p-1">
-                    <ShieldCheck className="h-4 w-4 text-green-400" />
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={onOpenWallet}
-                  className="bg-[#007aff] px-4 py-2 rounded-2xl flex items-center gap-2 shadow-md text-white hover:brightness-110 active:scale-[0.98] transition"
-                  aria-label="Open wallet"
-                >
-                  <Wallet className="w-4 h-4" />
-                  <span>Wallet</span>
-                </button>
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
-                    {user.name}
-                  </h2>
-                  <span
-                    className="inline-flex items-center gap-1 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 text-[11px] leading-5 text-emerald-200"
-                    aria-label="Verified account"
-                  >
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-300" />
-                    Verified
-                  </span>
-                </div>
-
-                <p className="text-sm text-gray-300 mt-0.5">{user.handle}</p>
-
-                <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-gray-200/90">
-                  <span className="rounded-md bg-black/30 px-2 py-1 border border-white/10">ID: {user.id}</span>
-                  <span className="text-gray-500">•</span>
-                  <span className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 hover:bg-white/10 active:scale-[0.98] transition">Joined: {user.joined}</span>
+      <div className="p-4 sm:p-6 lg:p-7">
+        <div className="flex flex-col items-center sm:items-start sm:flex-row gap-4 sm:gap-5">
+          {/* Avatar and Wallet Button */}
+          <div className="flex flex-col xs:flex-row items-center gap-4 sm:gap-6 shrink-0">
+            <div className="relative h-20 w-20 sm:h-24 sm:w-24">
+              <span className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-[#22d3ee] via-[#3b82f6] to-[#a855f7] opacity-70 blur" />
+              <div className="relative h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden ring-2 ring-white/20 bg-black/40">
+                <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
+                  {tgUser?.first_name?.[0]?.toUpperCase() || 'U'}
                 </div>
               </div>
+              <span className="absolute -bottom-1 -right-1 rounded-full bg-black/60 ring-1 ring-green-400/20 p-1">
+                <ShieldCheck className="h-3 w-3 sm:h-4 sm:w-4 text-green-400" />
+              </span>
             </div>
 
-            <div className="mt-5 grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/10 bg-black/20 overflow-hidden">
-              {[
-                { label: "Earnings", value: `${walletConfig.currencySymbol}${userData?.totalEarned.toFixed(2) || '0.00'}` },
-                { label: "Friends", value: `${referralData?.referredCount || 0}` },
-                { label: "Withdrawn", value: `${walletConfig.currencySymbol}${userData?.totalWithdrawn.toFixed(2) || '0.00'}` },
-              ].map((s, i) => (
-                <div key={i} className="px-4 py-3 text-center">
-                  <p className="text-[11px] uppercase tracking-wide text-gray-400">{s.label}</p>
-                  <p className="text-base font-semibold">{s.value}</p>
-                </div>
-              ))}
+            <button
+              type="button"
+              onClick={onOpenWallet}
+              className="bg-[#007aff] px-4 py-2 rounded-2xl flex items-center gap-2 shadow-md text-white hover:brightness-110 active:scale-[0.98] transition w-full xs:w-auto justify-center"
+              aria-label="Open wallet"
+            >
+              <Wallet className="w-4 h-4" />
+              <span>Wallet</span>
+            </button>
+          </div>
+
+          {/* User Info */}
+          <div className="min-w-0 flex-1 text-center sm:text-left">
+            <div className="flex flex-col xs:flex-row xs:items-center gap-2 flex-wrap justify-center sm:justify-start">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight break-words">
+                {user.name}
+              </h2>
+              <span
+                className="inline-flex items-center gap-1 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 text-[11px] leading-5 text-emerald-200 w-fit mx-auto xs:mx-0"
+                aria-label="Verified account"
+              >
+                <CheckCircle2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-emerald-300" />
+                Verified
+              </span>
+            </div>
+
+            <p className="text-sm text-gray-300 mt-0.5 break-words">{user.handle}</p>
+
+            <div className="mt-2 flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-gray-200/90 justify-center sm:justify-start">
+              <span className="rounded-md bg-black/30 px-2 py-1 border border-white/10 break-all">
+                ID: {user.id}
+              </span>
+              <span className="text-gray-500 hidden xs:inline">•</span>
+              <span className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 hover:bg-white/10 active:scale-[0.98] transition w-fit mx-auto xs:mx-0">
+                Joined: {user.joined}
+              </span>
             </div>
           </div>
         </div>
+
+        {/* Stats Grid */}
+        <div className="mt-4 sm:mt-5 grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/10 bg-black/20 overflow-hidden">
+          {[
+            { label: "Earnings", value: `${walletConfig.currencySymbol}${userData?.totalEarned.toFixed(2) || '0.00'}` },
+            { label: "Friends", value: `${referralData?.referredCount || 0}` },
+            { label: "Withdrawn", value: `${walletConfig.currencySymbol}${userData?.totalWithdrawn.toFixed(2) || '0.00'}` },
+          ].map((s, i) => (
+            <div key={i} className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-center">
+              <p className="text-[10px] xs:text-[11px] uppercase tracking-wide text-gray-400 break-words">
+                {s.label}
+              </p>
+              <p className="text-sm sm:text-base font-semibold break-words">
+                {s.value}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
   );
 }
 
