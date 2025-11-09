@@ -1549,7 +1549,7 @@ const HomeTab: React.FC = () => {
   const showRewardedAd = async (): Promise<boolean> => {
     return new Promise((resolve) => {
       try {
-        const showAdFunction = (window as any).show_9878570
+        const showAdFunction = (window as any).show_10161260
         if (typeof showAdFunction === 'function') {
           // libtl SDK function - we assume it returns a promise or uses callbacks
           const result = showAdFunction()
