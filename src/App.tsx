@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef, createContext, useContext } from 'react'
-import { Bell, Loader2, Copy, Check, Link2, Users, Coins, Send, Code, ArrowLeft, ArrowRight, CreditCard, X, CheckCircle2, ShieldCheck, History, Shield, Wifi, WifiOff, RefreshCw, Globe } from 'lucide-react'
+import { Bell, Loader2, Copy, Check, Link2, Users, Coins, Send, Code, ArrowLeft, ArrowRight, CreditCard, X, CheckCircle2, ShieldCheck, History, Shield, Wifi, WifiOff, RefreshCw, Globe, Server, Clock } from 'lucide-react'
 import { logo, fan, sparkles } from './images'
 import Wallet from "./icons/Wallet"
 import HomeIcon from './icons/Home'
@@ -7,7 +7,7 @@ import EarnIcon from './icons/Earn'
 import FriendsIcon from './icons/Friends'
 import ProfileIcon from './icons/Profile'
 import { db } from './Firebase'
-import { ref, set, update, onValue, push, query, orderByChild, limitToLast, get } from 'firebase/database'
+import { ref, set, update, onValue, push, query, orderByChild, limitToLast, get, runTransaction } from 'firebase/database'
 import { FaTasks, FaTelegram } from 'react-icons/fa'
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
@@ -513,10 +513,10 @@ const SourceProtection = () => {
     // Console warning
     const consoleWarning = () => {
       console.clear();
-      console.log('%c🚫 ACCESS DENIED 🚫', 'color: red; font-size: 40px; font-weight: bold;');
-      console.log('%c⚠️ UNAUTHORIZED ACCESS TO SOURCE CODE IS PROHIBITED', 'color: red; font-size: 16px; font-weight: bold;');
-      console.log('%c🔒 This application is protected by Security System', 'color: orange; font-size: 14px;');
-      console.log('%c© 2025 - All Rights Reserved', 'color: gray; font-size: 10px;');
+      console.log('%cðŸš« ACCESS DENIED ðŸš«', 'color: red; font-size: 40px; font-weight: bold;');
+      console.log('%câš ï¸ UNAUTHORIZED ACCESS TO SOURCE CODE IS PROHIBITED', 'color: red; font-size: 16px; font-weight: bold;');
+      console.log('%cðŸ”’ This application is protected by Security System', 'color: orange; font-size: 14px;');
+      console.log('%cÂ© 2025 - All Rights Reserved', 'color: gray; font-size: 10px;');
     };
 
     // Anti-debugging measures
@@ -677,10 +677,10 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
         <div className="bg-gray-800/40 border border-gray-600/40 rounded-2xl p-4 mb-6">
           <h3 className="text-gray-300 font-semibold mb-2 text-sm">Account Rules</h3>
           <ul className="text-xs text-gray-400 text-left space-y-1">
-            <li>• Max 2 accounts per device</li>
-            <li>• First account becomes main account</li>
-            <li>• Use your main account for best experience</li>
-            <li>• Contact support for help</li>
+            <li>â€¢ Max 2 accounts per device</li>
+            <li>â€¢ First account becomes main account</li>
+            <li>â€¢ Use your main account for best experience</li>
+            <li>â€¢ Contact support for help</li>
           </ul>
         </div>
 
@@ -1522,8 +1522,8 @@ const HomeTab: React.FC = () => {
     const script = document.createElement('script')
     script.src = '//libtl.com/sdk.js'
     script.async = true
-    script.setAttribute('data-zone', '10161260')
-    script.setAttribute('data-sdk', 'show_10161260')
+    script.setAttribute('data-zone', '9878570')
+    script.setAttribute('data-sdk', 'show_9878570')
     
     script.onload = () => {
       console.log('libtl SDK loaded successfully')
@@ -1549,7 +1549,7 @@ const HomeTab: React.FC = () => {
   const showRewardedAd = async (): Promise<boolean> => {
     return new Promise((resolve) => {
       try {
-        const showAdFunction = (window as any).show_10161260
+        const showAdFunction = (window as any).show_9878570
         if (typeof showAdFunction === 'function') {
           // libtl SDK function - we assume it returns a promise or uses callbacks
           const result = showAdFunction()
@@ -1590,7 +1590,7 @@ const HomeTab: React.FC = () => {
     if (!userData) return
 
     try {
-      // If mining not active → start session
+      // If mining not active â†’ start session
       if (!isActive) {
         const started = await startMining()
         if (started) {
@@ -1603,7 +1603,7 @@ const HomeTab: React.FC = () => {
         return
       }
 
-      // If claimable → show rewarded ad first, then claim
+      // If claimable â†’ show rewarded ad first, then claim
       if (canClaim) {
         setShowingAd(true)
         
@@ -1688,7 +1688,7 @@ const HomeTab: React.FC = () => {
           </h1>
           <Bell className="w-6 h-6 text-gray-400 cursor-pointer" />
         </div>
-        <p className="text-gray-400 text-sm mt-1">You're doing great 🐾</p>
+        <p className="text-gray-400 text-sm mt-1">You're doing great ðŸ¾</p>
         <div className="absolute -top-2 -right-2">
           <img src={sparkles} alt="Sparkles" width={40} height={40} />
         </div>
@@ -1699,7 +1699,7 @@ const HomeTab: React.FC = () => {
           <img src={fan} alt="fan" width={220} height={220} className="animate-spinSlow" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-10 h-10 bg-[#1f1f1f] rounded-full flex items-center justify-center border border-gray-700">
-              <span className="text-white text-lg font-bold">▲</span>
+              <span className="text-white text-lg font-bold">â–²</span>
             </div>
           </div>
         </div>
@@ -1714,7 +1714,7 @@ const HomeTab: React.FC = () => {
           {isActive ? (
             <>
               {canClaim ? (
-                <span className="font-semibold text-green-400">Ready to Claim! 🎉</span>
+                <span className="font-semibold text-green-400">Ready to Claim! ðŸŽ‰</span>
               ) : (
                 <>
                   Next Claim in:{' '}
@@ -1774,7 +1774,13 @@ const HomeTab: React.FC = () => {
   )
 }
 
-// Server Configuration for Tasks
+// Enhanced Daily Tasks Component with Fixed Task Completion
+interface DailyTasksProps {
+  userData?: UserData | null;
+  onCompleteTask: (taskId: string, reward: number) => Promise<boolean>;
+  onBack: () => void;
+}
+
 const SERVER_CONFIG = {
   baseUrl: 'https://7a04fb8f-f6f0-44ff-81aa-4749b3cbe3cd.e1-us-east-azure.choreoapps.dev',
   endpoints: {
@@ -1783,13 +1789,6 @@ const SERVER_CONFIG = {
     health: '/api/health'
   }
 };
-
-// Daily Tasks Component
-interface DailyTasksProps {
-  userData?: UserData | null;
-  onCompleteTask: (taskId: string) => Promise<boolean>;
-  onBack: () => void;
-}
 
 const DailyTasks: React.FC<DailyTasksProps> = ({
   userData,
@@ -1806,7 +1805,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
   const [taskErrors, setTaskErrors] = useState<Record<string, string>>({});
   const [serverStatus, setServerStatus] = useState<'connecting' | 'connected' | 'error'>('connecting');
   const [connectionId, setConnectionId] = useState<string>('');
-  const { walletConfig } = useWalletConfig()
+  const { walletConfig } = useWalletConfig();
 
   useEffect(() => {
     registerFrontendConnection();
@@ -1961,12 +1960,13 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
       return { canStart: false, reason: "User not logged in" };
     }
 
-    const taskCompletion = userData.tasksCompleted?.[task.id];
-    const completed = taskCompletion ? 1 : 0;
-    const isCompleted = completed >= task.totalRequired;
+    const completedTask = userData.tasksCompleted?.[task.id];
+    const completedCount = completedTask ? 1 : 0;
+    const isCompleted = completedCount >= task.totalRequired;
     const usersQuantity = task.usersQuantity || 0;
     const completedUsers = task.completedUsers || 0;
 
+    // Check if task is disabled for all users (users quantity limit reached)
     if (usersQuantity > 0 && completedUsers >= usersQuantity) {
       return { canStart: false, reason: "This task is no longer available" };
     }
@@ -1982,16 +1982,61 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
     const taskRef = ref(db, `tasks/${taskId}`);
 
     try {
-      const taskSnapshot = await get(taskRef);
-      const currentTask = taskSnapshot.val();
-      const currentCompletedUsers = currentTask?.completedUsers || 0;
-      
-      await update(taskRef, {
-        completedUsers: currentCompletedUsers + 1
+      const result = await runTransaction(taskRef, (currentTask: any) => {
+        if (!currentTask) return;
+
+        const usersQuantity = currentTask.usersQuantity || 0;
+        const completedUsers = currentTask.completedUsers || 0;
+
+        // Only increment if we haven't reached the limit
+        if (usersQuantity > 0 && completedUsers >= usersQuantity) {
+          throw new Error("Task users quantity limit reached");
+        }
+
+        currentTask.completedUsers = (completedUsers || 0) + 1;
+        return currentTask;
       });
-      return true;
+
+      return result.committed;
     } catch (error) {
       console.error('Error incrementing completed users:', error);
+      return false;
+    }
+  };
+
+  // FIXED: Enhanced task completion handler
+  const handleCompleteTaskInternal = async (taskId: string): Promise<boolean> => {
+    if (!userData) {
+      console.error('User data not available');
+      return false;
+    }
+
+    try {
+      const task = tasks.find(t => t.id === taskId);
+      if (!task) {
+        console.error('Task not found:', taskId);
+        return false;
+      }
+
+      // Check if task is already completed
+      const currentCompletion = userData.tasksCompleted?.[taskId];
+      if (currentCompletion) {
+        console.log('Task already completed');
+        return false;
+      }
+
+      // Call the parent completion handler with reward
+      const success = await onCompleteTask(taskId, task.reward);
+      
+      if (success) {
+        console.log('Task completed successfully:', taskId);
+        return true;
+      } else {
+        console.error('Failed to complete task in parent handler');
+        return false;
+      }
+    } catch (error) {
+      console.error('Error in handleCompleteTaskInternal:', error);
       return false;
     }
   };
@@ -2022,15 +2067,23 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
       if (task.category === "TG Tasks" && task.telegramChannel) {
         const telegramUrl = task.inviteLink || `https://t.me/${task.telegramChannel}`;
         window.open(telegramUrl, "_blank", "noopener,noreferrer");
-        alert(`Join the channel: ${task.telegramChannel}\n\n1. Click the link to join\n2. Wait a few seconds after joining\n3. Come back and click "Verify & Claim"`);
+        
+        // Show better instructions
+        window.Telegram?.WebApp?.showPopup?.({
+          title: 'Join Channel',
+          message: `1. Join the channel: ${task.telegramChannel}\n2. Wait a few seconds after joining\n3. Return here and click "Verify & Claim"`,
+          buttons: [{ type: 'ok' }]
+        });
       } else if (task.url) {
         window.open(task.url, "_blank", "noopener,noreferrer");
       } else {
+        // For tasks without URLs, complete immediately
         setTimeout(() => {
           handleClaimTask(task);
         }, 1000);
       }
     } catch (error) {
+      console.error('Error starting task:', error);
       setTaskErrors(prev => ({
         ...prev,
         [task.id]: "Error starting task"
@@ -2040,62 +2093,113 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
     }
   };
 
+  // FIXED: Enhanced claim task handler
   const handleClaimTask = async (task: Task): Promise<void> => {
-    if (!userData) return;
+    if (!userData) {
+      alert("User data not available");
+      return;
+    }
 
     setClaimingTask(task.id);
     setTaskErrors(prev => ({ ...prev, [task.id]: '' }));
 
     try {
-      if (task.category === "TG Tasks" && task.telegramChannel && task.checkMembership) {
-        const isMember = await checkTelegramMembership(task.id);
+      let verificationPassed = true;
 
-        if (!isMember) {
+      // For TG Tasks, verify membership first
+      if (task.category === "TG Tasks" && task.telegramChannel && task.checkMembership) {
+        verificationPassed = await checkTelegramMembership(task.id);
+        
+        if (!verificationPassed) {
+          const errorMsg = "We couldn't verify that you joined the channel. Please make sure you joined and try again.";
           setTaskErrors(prev => ({
             ...prev,
-            [task.id]: "We couldn't verify that you joined the channel"
+            [task.id]: errorMsg
           }));
-          setPendingTask(null);
-          setClaimingTask(null);
+          window.Telegram?.WebApp?.showPopup?.({
+            title: 'Verification Failed',
+            message: errorMsg,
+            buttons: [{ type: 'ok' }]
+          });
           return;
         }
       }
 
+      // Check if we can still complete this task (users quantity limit)
       const usersQuantity = task.usersQuantity || 0;
       const completedUsers = task.completedUsers || 0;
 
       if (usersQuantity > 0 && completedUsers >= usersQuantity) {
+        const errorMsg = "This task is no longer available (user limit reached)";
         setTaskErrors(prev => ({
           ...prev,
-          [task.id]: "This task is no longer available"
+          [task.id]: errorMsg
         }));
-        setPendingTask(null);
-        setClaimingTask(null);
+        window.Telegram?.WebApp?.showPopup?.({
+          title: 'Task Unavailable',
+          message: errorMsg,
+          buttons: [{ type: 'ok' }]
+        });
         return;
       }
 
-      const userIncremented = await incrementCompletedUsers(task.id);
-
-      if (!userIncremented) {
-        setTaskErrors(prev => ({
-          ...prev,
-          [task.id]: "This task is no longer available"
-        }));
-        setPendingTask(null);
-        setClaimingTask(null);
-        return;
+      // Increment completed users count
+      if (usersQuantity > 0) {
+        const userIncremented = await incrementCompletedUsers(task.id);
+        if (!userIncremented) {
+          const errorMsg = "This task is no longer available";
+          setTaskErrors(prev => ({
+            ...prev,
+            [task.id]: errorMsg
+          }));
+          window.Telegram?.WebApp?.showPopup?.({
+            title: 'Task Unavailable',
+            message: errorMsg,
+            buttons: [{ type: 'ok' }]
+          });
+          return;
+        }
       }
 
-      const success = await onCompleteTask(task.id);
+      // Complete the task
+      const success = await handleCompleteTaskInternal(task.id);
 
       if (success) {
         setPendingTask(null);
-        alert(`🎉 Task completed! You earned ${walletConfig.currencySymbol}${task.reward.toFixed(2)}`);
+        
+        // Show success message
+        window.Telegram?.WebApp?.showPopup?.({
+          title: 'Task Completed! ðŸŽ‰',
+          message: `You earned ${walletConfig.currencySymbol}${task.reward.toFixed(2)}`,
+          buttons: [{ type: 'ok' }]
+        });
+        
+        // Clear any previous errors
+        setTaskErrors(prev => ({ ...prev, [task.id]: '' }));
       } else {
-        alert("Failed to complete task");
+        const errorMsg = "Failed to complete task. Please try again.";
+        setTaskErrors(prev => ({
+          ...prev,
+          [task.id]: errorMsg
+        }));
+        window.Telegram?.WebApp?.showPopup?.({
+          title: 'Error',
+          message: errorMsg,
+          buttons: [{ type: 'ok' }]
+        });
       }
     } catch (error) {
-      alert("Error completing task");
+      console.error('Error claiming task:', error);
+      const errorMsg = "An error occurred while completing the task";
+      setTaskErrors(prev => ({
+        ...prev,
+        [task.id]: errorMsg
+      }));
+      window.Telegram?.WebApp?.showPopup?.({
+        title: 'Error',
+        message: errorMsg,
+        buttons: [{ type: 'ok' }]
+      });
     } finally {
       setClaimingTask(null);
     }
@@ -2116,11 +2220,11 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
   const getServerStatusIcon = () => {
     switch (serverStatus) {
       case 'connected':
-        return <CheckCircle2 className="w-5 h-5 text-green-400" />;
+        return <Wifi className="w-5 h-5 text-green-400" />;
       case 'error':
-        return <X className="w-5 h-5 text-red-400" />;
+        return <WifiOff className="w-5 h-5 text-red-400" />;
       default:
-        return <Loader2 className="w-5 h-5 text-yellow-400 animate-pulse" />;
+        return <Server className="w-5 h-5 text-yellow-400 animate-pulse" />;
     }
   };
 
@@ -2132,7 +2236,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black px-4 py-6">
+      <div className="min-h-screen bg-gradient-to-b from-[#0f172a] px-4 py-6">
         <div className="max-w-md mx-auto">
           <div className="flex items-center mb-8">
             <div className="flex items-center cursor-pointer group" onClick={onBack}>
@@ -2142,12 +2246,12 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
             </div>
             <div className="flex-1 text-center">
               <h1 className="text-2xl font-bold text-white">Daily Tasks</h1>
-              <p className="text-gray-400 text-sm mt-1">Complete tasks and earn rewards</p>
+              <p className="text-blue-200 text-sm mt-1">Complete tasks and earn rewards</p>
             </div>
             <div className="w-12"></div>
           </div>
           <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4c9ce2]"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
           </div>
         </div>
       </div>
@@ -2155,7 +2259,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-black px-4 py-6">
+    <div className="min-h-screen bg-gradient-to-b from-[#0f172a] px-4 py-6">
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="flex items-center mb-6">
@@ -2170,7 +2274,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
               <h1 className="text-2xl font-bold text-white">Daily Tasks</h1>
               {getServerStatusIcon()}
             </div>
-            <p className="text-gray-400 text-sm">Complete tasks and earn rewards</p>
+            <p className="text-blue-200 text-sm">Complete tasks and earn rewards</p>
           </div>
           <div className="w-10"></div>
         </div>
@@ -2179,7 +2283,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
         {!isServerOnline && (
           <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 mb-4">
             <div className="flex items-center gap-2 text-red-400 mb-1">
-              <X className="w-4 h-4" />
+              <WifiOff className="w-4 h-4" />
               <span className="text-sm font-medium">Server Offline</span>
             </div>
             <p className="text-red-300 text-xs">
@@ -2187,7 +2291,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
             </p>
             <button
               onClick={handleRetryConnection}
-              className="text-xs bg-[#4c9ce2]/20 text-[#4c9ce2] px-2 py-1 rounded-lg border border-[#4c9ce2]/30 hover:bg-[#4c9ce2]/30 transition-all mt-2"
+              className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-lg border border-blue-500/30 hover:bg-blue-500/30 transition-all mt-2"
             >
               Retry Connection
             </button>
@@ -2207,8 +2311,8 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                 }}
                 className={`flex-1 py-3 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2
                   ${dailyTaskFilter === tab
-                    ? "bg-[#4c9ce2] text-white shadow-lg"
-                    : "text-gray-400 hover:text-white hover:bg-white/10"
+                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
+                    : "text-blue-200 hover:text-white hover:bg-white/10"
                   }`}
               >
                 {tab === "TG Tasks" && <FaTelegram className="w-4 h-4" />}
@@ -2222,19 +2326,19 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
         <div className="space-y-3">
           {paginatedTasks.length === 0 ? (
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 p-8 text-center">
-              <FaTasks className="w-12 h-12 text-[#4c9ce2] mx-auto mb-3 opacity-50" />
-              <p className="text-gray-300 font-semibold">
+              <FaTasks className="w-12 h-12 text-blue-400 mx-auto mb-3 opacity-50" />
+              <p className="text-blue-300 font-semibold">
                 {tasks.length === 0 ? "No tasks available" : "No tasks in this category"}
               </p>
-              <p className="text-gray-400 text-sm mt-1">
+              <p className="text-blue-200 text-sm mt-1">
                 Check back later for new tasks
               </p>
             </div>
           ) : (
             paginatedTasks.map((task) => {
-              const taskCompletion = userData?.tasksCompleted?.[task.id];
-              const completed = taskCompletion ? 1 : 0;
-              const isCompleted = completed >= task.totalRequired;
+              const completedTask = userData?.tasksCompleted?.[task.id];
+              const completedCount = completedTask ? 1 : 0;
+              const isCompleted = completedCount >= task.totalRequired;
               const isPending = pendingTask?.id === task.id;
               const isStarting = startingTask === task.id;
               const isClaiming = claimingTask === task.id;
@@ -2256,10 +2360,10 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                     <div className="flex items-start gap-3">
                       {/* Task Icon */}
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300
-                        ${isCompleted ? 'bg-green-500' :
-                          isPending ? 'bg-yellow-500' :
-                            !availability.canStart || isTaskDisabled || isTaskLimitReached ? 'bg-red-500' :
-                              'bg-[#4c9ce2]'}`}
+                        ${isCompleted ? 'bg-gradient-to-r from-green-500 to-emerald-600' :
+                          isPending ? 'bg-gradient-to-r from-yellow-500 to-amber-600' :
+                            !availability.canStart || isTaskDisabled || isTaskLimitReached ? 'bg-gradient-to-r from-red-500 to-pink-600' :
+                              'bg-gradient-to-r from-blue-500 to-cyan-600'}`}
                       >
                         {getTaskIcon(task.category)}
                       </div>
@@ -2277,8 +2381,8 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                             {/* Telegram Channel */}
                             {task.telegramChannel && (
                               <div className="flex items-center gap-1 mb-2">
-                                <FaTelegram className={`w-3 h-3 ${(isTaskDisabled || isTaskLimitReached) ? 'text-gray-500' : 'text-[#4c9ce2]'}`} />
-                                <span className={`text-xs ${(isTaskDisabled || isTaskLimitReached) ? 'text-gray-500' : 'text-[#4c9ce2]'}`}>
+                                <FaTelegram className={`w-3 h-3 ${(isTaskDisabled || isTaskLimitReached) ? 'text-gray-500' : 'text-blue-300'}`} />
+                                <span className={`text-xs ${(isTaskDisabled || isTaskLimitReached) ? 'text-gray-500' : 'text-blue-300'}`}>
                                   @{task.telegramChannel}
                                 </span>
                               </div>
@@ -2287,7 +2391,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
 
                           {/* Reward */}
                           <div className="bg-green-500/20 text-green-400 text-xs font-bold px-2 py-1 rounded-lg border border-green-500/30 ml-2 flex-shrink-0">
-                            +{walletConfig.currencySymbol}{task.reward.toFixed(2)}
+                            +${task.reward.toFixed(2)}
                           </div>
                         </div>
 
@@ -2295,8 +2399,8 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                         <div className="space-y-2">
                           {/* User Progress */}
                           <div className="flex items-center justify-between">
-                            <span className={`text-xs ${(isTaskDisabled || isTaskLimitReached) ? 'text-gray-500' : 'text-gray-300'}`}>
-                              Your progress: {completed}/{task.totalRequired}
+                            <span className={`text-xs ${(isTaskDisabled || isTaskLimitReached) ? 'text-gray-500' : 'text-blue-300'}`}>
+                              Your progress: {completedCount}/{task.totalRequired}
                             </span>
                             {isCompleted && (
                               <span className="text-green-400 text-xs font-medium bg-green-500/10 px-2 py-1 rounded border border-green-500/20">
@@ -2308,11 +2412,11 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                           {/* Users Quantity Stats */}
                           {usersQuantity > 0 && (
                             <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-1 text-xs text-gray-300">
+                              <div className="flex items-center gap-1 text-xs text-blue-300">
                                 <Users className="w-3 h-3" />
                                 <span>
                                   {completedUsers}/{usersQuantity} users
-                                  {" "}• Remaining: {usersQuantity - completedUsers}
+                                  {" "}â€¢ Remaining: {usersQuantity - completedUsers}
                                 </span>
                               </div>
                               {isTaskLimitReached && (
@@ -2325,7 +2429,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
 
                           {taskErrors[task.id] && (
                             <p className="text-red-400 text-xs bg-red-500/10 px-2 py-1 rounded border border-red-500/20 whitespace-pre-line">
-                              ⚠️ {taskErrors[task.id]}
+                              âš ï¸ {taskErrors[task.id]}
                             </p>
                           )}
                         </div>
@@ -2335,13 +2439,13 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                           {isPending ? (
                             <div className="flex gap-2">
                               <button
-                                className="flex-1 px-4 py-2 rounded-xl font-semibold text-sm bg-yellow-500 hover:bg-yellow-600 text-white transition-all duration-300 flex items-center justify-center gap-2"
+                                className="flex-1 px-4 py-2 rounded-xl font-semibold text-sm bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-white transition-all duration-300 flex items-center justify-center gap-2"
                                 disabled={isClaiming || !isServerOnline || isTaskLimitReached}
                                 onClick={() => handleClaimTask(task)}
                               >
                                 {isClaiming ? (
                                   <>
-                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                    <Clock className="w-4 h-4 animate-spin" />
                                     Verifying...
                                   </>
                                 ) : (
@@ -2362,7 +2466,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                                   ? "bg-gray-600 text-gray-400 cursor-not-allowed"
                                   : !availability.canStart || isStarting || isTaskDisabled || isTaskLimitReached
                                     ? "bg-red-500/50 text-red-200 cursor-not-allowed"
-                                    : "bg-[#4c9ce2] hover:bg-[#3a8bd6] text-white"
+                                    : "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
                                 }`}
                               disabled={isCompleted || !availability.canStart || isStarting || isTaskDisabled || isTaskLimitReached}
                               onClick={() => handleStartTask(task)}
@@ -2371,7 +2475,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                                 "Completed"
                               ) : isStarting ? (
                                 <>
-                                  <Loader2 className="w-4 h-4 animate-spin" />
+                                  <Clock className="w-4 h-4 animate-spin" />
                                   Starting...
                                 </>
                               ) : !availability.canStart ? (
@@ -2388,7 +2492,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                                   Join Channel
                                 </>
                               ) : (
-                                "🚀 Start Task"
+                                "ðŸš€ Start Task"
                               )}
                             </button>
                           )}
@@ -2408,17 +2512,17 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
             <button
               onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
-              className="px-4 py-2 text-sm rounded-lg bg-white/10 text-gray-300 disabled:opacity-40 hover:text-white hover:bg-white/20 transition-all duration-300 border border-white/20"
+              className="px-4 py-2 text-sm rounded-lg bg-white/10 text-blue-300 disabled:opacity-40 hover:text-white hover:bg-white/20 transition-all duration-300 border border-white/20"
             >
               Previous
             </button>
-            <span className="text-gray-300 text-sm font-medium min-w-[80px] text-center">
+            <span className="text-blue-300 text-sm font-medium min-w-[80px] text-center">
               {currentPage} / {totalPages}
             </span>
             <button
               onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
               disabled={currentPage === totalPages}
-              className="px-4 py-2 text-sm rounded-lg bg-white/10 text-gray-300 disabled:opacity-40 hover:text-white hover:bg-white/20 transition-all duration-300 border border-white/20"
+              className="px-4 py-2 text-sm rounded-lg bg-white/10 text-blue-300 disabled:opacity-40 hover:text-white hover:bg-white/20 transition-all duration-300 border border-white/20"
             >
               Next
             </button>
@@ -2861,7 +2965,7 @@ const AdsDashboard: React.FC<{ userData?: UserData | null }> = ({ userData }) =>
   // Enhanced AdExtra handler with proper timeout and error handling (from 2nd code)
   const runAdExtra = async (adId: number, ad: Ad) => {
     if (typeof window.p_adextra !== 'function') {
-      showMessage('info', 'AdExtra initializing… please try again in a moment');
+      showMessage('info', 'AdExtra initializingâ€¦ please try again in a moment');
       concurrencyLockRef.current = false;
       setConcurrentLock(false);
       setIsWatchingAd(null);
@@ -2981,7 +3085,7 @@ const AdsDashboard: React.FC<{ userData?: UserData | null }> = ({ userData }) =>
     concurrencyLockRef.current = true;
     setConcurrentLock(true);
     setIsWatchingAd(adId);
-    showMessage('info', 'Preparing ad…');
+    showMessage('info', 'Preparing adâ€¦');
 
     try {
       // Handle different providers
@@ -3117,7 +3221,7 @@ const AdsDashboard: React.FC<{ userData?: UserData | null }> = ({ userData }) =>
               onClick={() => showAd(ad.id)}
               disabled={isAdDisabled(ad) || isWatchingAd === ad.id}
             >
-              {isWatchingAd === ad.id ? 'Watching Ad…' : getButtonText(ad)}
+              {isWatchingAd === ad.id ? 'Watching Adâ€¦' : getButtonText(ad)}
             </button>
           </div>
         </div>
@@ -3352,62 +3456,71 @@ const VPNGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <>{children}</>;
 };
 
-// Updated Earn Tab Component to handle VPN states properly
+// Updated EarnTab Component with Fixed Task Completion
 const EarnTab = () => {
   const [activeTab, setActiveTab] = useState<'ads' | 'daily-tasks'>('ads')
   const [showHistory, setShowHistory] = useState(false)
   const { userData, updateUser, addTransaction } = useUserData()
+  useWalletConfig()
 
-  const handleCompleteTask = async (taskId: string): Promise<boolean> => {
-    if (!userData) return false
-
-    const tasksRef = ref(db, 'tasks')
-    const snapshot = await get(tasksRef)
-    if (!snapshot.exists()) return false
-
-    const tasksData = snapshot.val()
-    const task = Object.values(tasksData).find((t: any) => t.id === taskId) as Task
-    if (!task) return false
-
-    const today = new Date().toISOString().split('T')[0];
-    const todayStats = userData.stats?.[today] || { ads: 0, earned: 0 };
-
-    const newBalance = userData.balance + task.reward
-    const newTotalEarned = userData.totalEarned + task.reward
-    
-    const newTasksCompleted = {
-      ...userData.tasksCompleted,
-      [taskId]: {
-        completedAt: new Date().toISOString(),
-        reward: task.reward
-      }
+  // FIXED: Enhanced task completion handler
+  const handleCompleteTask = async (taskId: string, reward: number): Promise<boolean> => {
+    if (!userData) {
+      console.error('User data not available for task completion');
+      return false;
     }
 
-    const newStats = {
-      ...userData.stats,
-      [today]: {
-        ads: todayStats.ads,
-        earned: todayStats.earned + task.reward
-      }
+    try {
+      console.log('Completing task:', taskId, 'Reward:', reward);
+
+      const today = new Date().toISOString().split('T')[0];
+      const todayStats = userData.stats?.[today] || { ads: 0, earned: 0 };
+
+      const newBalance = userData.balance + reward;
+      const newTotalEarned = userData.totalEarned + reward;
+      
+      // Update tasks completed - FIXED: Store completion data properly
+      const newTasksCompleted = {
+        ...userData.tasksCompleted,
+        [taskId]: {
+          completedAt: new Date().toISOString(),
+          reward: reward
+        }
+      };
+
+      const newStats = {
+        ...userData.stats,
+        [today]: {
+          ads: todayStats.ads,
+          earned: todayStats.earned + reward
+        }
+      };
+
+      // Update user data
+      await updateUser({
+        balance: newBalance,
+        totalEarned: newTotalEarned,
+        tasksCompleted: newTasksCompleted,
+        stats: newStats
+      });
+
+      // Add transaction record
+      await addTransaction({
+        userId: userData.telegramId,
+        type: 'task_reward',
+        amount: reward,
+        description: `Task completed`,
+        timestamp: Date.now(),
+        status: 'completed'
+      });
+
+      console.log('Task completed successfully');
+      return true;
+
+    } catch (error) {
+      console.error('Error completing task:', error);
+      return false;
     }
-
-    await updateUser({
-      balance: newBalance,
-      totalEarned: newTotalEarned,
-      tasksCompleted: newTasksCompleted,
-      stats: newStats
-    })
-
-    await addTransaction({
-      userId: userData.telegramId,
-      type: 'task_reward',
-      amount: task.reward,
-      description: `Task completed: ${task.name}`,
-      timestamp: Date.now(),
-      status: 'completed'
-    })
-
-    return true
   }
 
   // Render content based on active tab with VPN protection
@@ -3499,8 +3612,8 @@ const FriendsTab = () => {
   const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user
 
   const referUrl = useMemo(() => {
-    if (typeof window === 'undefined' || !tgUser?.id) return 'https://t.me/RevenueEarn_Bot?start=default'
-    return `https://t.me/RevenueEarn_Bot?start=${tgUser.id}`
+    if (typeof window === 'undefined' || !tgUser?.id) return 'https://t.me/nan0v1_bot?start=default'
+    return `https://t.me/nan0v1_bot?start=${tgUser.id}`
   }, [tgUser?.id])
 
   const [copied, setCopied] = useState(false)
@@ -3520,7 +3633,7 @@ const FriendsTab = () => {
     if (typeof window !== 'undefined' && (navigator as any).share) {
       try {
         await (navigator as any).share({
-          title: 'Join me on RevenueEarn',
+          title: 'Join me on NanoV1',
           text: 'Earn money by completing tasks and watching ads!',
           url: referUrl,
         })
@@ -3698,7 +3811,7 @@ function PaymentMethodList({
             />
             <div className="flex-1">
               <p className="text-sm font-medium text-white">{m.name}</p>
-              <p className="text-xs text-gray-400">• Min withdraw {walletConfig.currencySymbol}{m.minWithdrawal}</p>
+              <p className="text-xs text-gray-400">â€¢ Min withdraw {walletConfig.currencySymbol}{m.minWithdrawal}</p>
             </div>
             <span
               aria-hidden
@@ -3734,87 +3847,76 @@ function ProfileHeader({ onOpenWallet }: { onOpenWallet: () => void }) {
 
   return (
     <section aria-label="Profile header" className="w-full max-w-3xl">
-  <div className="relative -mt-12 sm:-mt-16 mx-3 sm:mx-6">
-    <div className="relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-xl">
-      <div className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-gradient-to-b from-white/20 to-transparent" />
+      <div className="relative -mt-12 sm:-mt-16 mx-3 sm:mx-6">
+        <div className="relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-xl">
+          <div className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-gradient-to-b from-white/20 to-transparent" />
 
-      <div className="p-4 sm:p-6 lg:p-7">
-        <div className="flex flex-col items-center sm:items-start sm:flex-row gap-4 sm:gap-5">
-          {/* Avatar and Wallet Button */}
-          <div className="flex flex-col xs:flex-row items-center gap-4 sm:gap-6 shrink-0">
-            <div className="relative h-20 w-20 sm:h-24 sm:w-24">
-              <span className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-[#22d3ee] via-[#3b82f6] to-[#a855f7] opacity-70 blur" />
-              <div className="relative h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden ring-2 ring-white/20 bg-black/40">
-                <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
-                  {tgUser?.first_name?.[0]?.toUpperCase() || 'U'}
+          <div className="p-5 sm:p-7">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+              <div className="flex items-center gap-24 shrink-0">
+                <div className="relative h-24 w-24">
+                  <span className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-[#22d3ee] via-[#3b82f6] to-[#a855f7] opacity-70 blur" />
+                  <div className="relative h-24 w-24 rounded-full overflow-hidden ring-2 ring-white/20 bg-black/40">
+                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
+                      {tgUser?.first_name?.[0]?.toUpperCase() || 'U'}
+                    </div>
+                  </div>
+                  <span className="absolute -bottom-1 -right-1 rounded-full bg-black/60 ring-1 ring-green-400/20 p-1">
+                    <ShieldCheck className="h-4 w-4 text-green-400" />
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={onOpenWallet}
+                  className="bg-[#007aff] px-4 py-2 rounded-2xl flex items-center gap-2 shadow-md text-white hover:brightness-110 active:scale-[0.98] transition"
+                  aria-label="Open wallet"
+                >
+                  <Wallet className="w-4 h-4" />
+                  <span>Wallet</span>
+                </button>
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
+                    {user.name}
+                  </h2>
+                  <span
+                    className="inline-flex items-center gap-1 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 text-[11px] leading-5 text-emerald-200"
+                    aria-label="Verified account"
+                  >
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-300" />
+                    Verified
+                  </span>
+                </div>
+
+                <p className="text-sm text-gray-300 mt-0.5">{user.handle}</p>
+
+                <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-gray-200/90">
+                  <span className="rounded-md bg-black/30 px-2 py-1 border border-white/10">ID: {user.id}</span>
+                  <span className="text-gray-500">â€¢</span>
+                  <span className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 hover:bg-white/10 active:scale-[0.98] transition">Joined: {user.joined}</span>
                 </div>
               </div>
-              <span className="absolute -bottom-1 -right-1 rounded-full bg-black/60 ring-1 ring-green-400/20 p-1">
-                <ShieldCheck className="h-3 w-3 sm:h-4 sm:w-4 text-green-400" />
-              </span>
             </div>
 
-            <button
-              type="button"
-              onClick={onOpenWallet}
-              className="bg-[#007aff] px-4 py-2 rounded-2xl flex items-center gap-2 shadow-md text-white hover:brightness-110 active:scale-[0.98] transition w-full xs:w-auto justify-center"
-              aria-label="Open wallet"
-            >
-              <Wallet className="w-4 h-4" />
-              <span>Wallet</span>
-            </button>
-          </div>
-
-          {/* User Info */}
-          <div className="min-w-0 flex-1 text-center sm:text-left">
-            <div className="flex flex-col xs:flex-row xs:items-center gap-2 flex-wrap justify-center sm:justify-start">
-              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight break-words">
-                {user.name}
-              </h2>
-              <span
-                className="inline-flex items-center gap-1 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 text-[11px] leading-5 text-emerald-200 w-fit mx-auto xs:mx-0"
-                aria-label="Verified account"
-              >
-                <CheckCircle2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-emerald-300" />
-                Verified
-              </span>
-            </div>
-
-            <p className="text-sm text-gray-300 mt-0.5 break-words">{user.handle}</p>
-
-            <div className="mt-2 flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-gray-200/90 justify-center sm:justify-start">
-              <span className="rounded-md bg-black/30 px-2 py-1 border border-white/10 break-all">
-                ID: {user.id}
-              </span>
-              <span className="text-gray-500 hidden xs:inline">•</span>
-              <span className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 hover:bg-white/10 active:scale-[0.98] transition w-fit mx-auto xs:mx-0">
-                Joined: {user.joined}
-              </span>
+            <div className="mt-5 grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/10 bg-black/20 overflow-hidden">
+              {[
+                { label: "Earnings", value: `${walletConfig.currencySymbol}${userData?.totalEarned.toFixed(2) || '0.00'}` },
+                { label: "Friends", value: `${referralData?.referredCount || 0}` },
+                { label: "Withdrawn", value: `${walletConfig.currencySymbol}${userData?.totalWithdrawn.toFixed(2) || '0.00'}` },
+              ].map((s, i) => (
+                <div key={i} className="px-4 py-3 text-center">
+                  <p className="text-[11px] uppercase tracking-wide text-gray-400">{s.label}</p>
+                  <p className="text-base font-semibold">{s.value}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="mt-4 sm:mt-5 grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/10 bg-black/20 overflow-hidden">
-          {[
-            { label: "Earnings", value: `${walletConfig.currencySymbol}${userData?.totalEarned.toFixed(2) || '0.00'}` },
-            { label: "Friends", value: `${referralData?.referredCount || 0}` },
-            { label: "Withdrawn", value: `${walletConfig.currencySymbol}${userData?.totalWithdrawn.toFixed(2) || '0.00'}` },
-          ].map((s, i) => (
-            <div key={i} className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-center">
-              <p className="text-[10px] xs:text-[11px] uppercase tracking-wide text-gray-400 break-words">
-                {s.label}
-              </p>
-              <p className="text-sm sm:text-base font-semibold break-words">
-                {s.value}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
   );
 }
 
@@ -4132,8 +4234,7 @@ const ProfileTab = () => {
                           <path
                             className="opacity-75"
                             fill="currentColor"
-                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                          ></path>
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
                       ) : (
                         <>
@@ -4168,7 +4269,7 @@ const ProfileTab = () => {
                             month: 'short', 
                             day: '2-digit',
                             year: 'numeric'
-                          })} • {new Date(tx.timestamp).toLocaleTimeString('en-US', {
+                          })} â€¢ {new Date(tx.timestamp).toLocaleTimeString('en-US', {
                             hour: '2-digit',
                             minute: '2-digit',
                             hour12: false
@@ -4236,7 +4337,7 @@ const ProfileTab = () => {
       )}
     </div>
   );
-}
+};
 
 // Main Page Component
 export default function HomePage() {
@@ -4308,4 +4409,4 @@ export default function HomePage() {
       </TabProvider>
     </>
   )
-} 
+}
