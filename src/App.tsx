@@ -23,7 +23,6 @@ const firebaseConfig = {
   appId: "1:95210268419:web:1050be3f3884f52fb82b36",
   measurementId: "G-H35J7NTZ32"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
@@ -513,10 +512,10 @@ const SourceProtection = () => {
     // Console warning
     const consoleWarning = () => {
       console.clear();
-      console.log('%cðŸš« ACCESS DENIED ðŸš«', 'color: red; font-size: 40px; font-weight: bold;');
-      console.log('%câš ï¸ UNAUTHORIZED ACCESS TO SOURCE CODE IS PROHIBITED', 'color: red; font-size: 16px; font-weight: bold;');
-      console.log('%cðŸ”’ This application is protected by Security System', 'color: orange; font-size: 14px;');
-      console.log('%cÂ© 2025 - All Rights Reserved', 'color: gray; font-size: 10px;');
+      console.log('%c🚫 ACCESS DENIED 🚫', 'color: red; font-size: 40px; font-weight: bold;');
+      console.log('%c⚠️ UNAUTHORIZED ACCESS TO SOURCE CODE IS PROHIBITED', 'color: red; font-size: 16px; font-weight: bold;');
+      console.log('%c🔒 This application is protected by Security System', 'color: orange; font-size: 14px;');
+      console.log('%c© 2025 - All Rights Reserved', 'color: gray; font-size: 10px;');
     };
 
     // Anti-debugging measures
@@ -677,10 +676,10 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
         <div className="bg-gray-800/40 border border-gray-600/40 rounded-2xl p-4 mb-6">
           <h3 className="text-gray-300 font-semibold mb-2 text-sm">Account Rules</h3>
           <ul className="text-xs text-gray-400 text-left space-y-1">
-            <li>â€¢ Max 2 accounts per device</li>
-            <li>â€¢ First account becomes main account</li>
-            <li>â€¢ Use your main account for best experience</li>
-            <li>â€¢ Contact support for help</li>
+            <li>• Max 2 accounts per device</li>
+            <li>• First account becomes main account</li>
+            <li>• Use your main account for best experience</li>
+            <li>• Contact support for help</li>
           </ul>
         </div>
 
@@ -1590,7 +1589,7 @@ const HomeTab: React.FC = () => {
     if (!userData) return
 
     try {
-      // If mining not active â†’ start session
+      // If mining not active → start session
       if (!isActive) {
         const started = await startMining()
         if (started) {
@@ -1603,7 +1602,7 @@ const HomeTab: React.FC = () => {
         return
       }
 
-      // If claimable â†’ show rewarded ad first, then claim
+      // If claimable → show rewarded ad first, then claim
       if (canClaim) {
         setShowingAd(true)
         
@@ -1688,7 +1687,7 @@ const HomeTab: React.FC = () => {
           </h1>
           <Bell className="w-6 h-6 text-gray-400 cursor-pointer" />
         </div>
-        <p className="text-gray-400 text-sm mt-1">You're doing great ðŸ¾</p>
+        <p className="text-gray-400 text-sm mt-1">You're doing great 🐾</p>
         <div className="absolute -top-2 -right-2">
           <img src={sparkles} alt="Sparkles" width={40} height={40} />
         </div>
@@ -1699,7 +1698,7 @@ const HomeTab: React.FC = () => {
           <img src={fan} alt="fan" width={220} height={220} className="animate-spinSlow" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-10 h-10 bg-[#1f1f1f] rounded-full flex items-center justify-center border border-gray-700">
-              <span className="text-white text-lg font-bold">â–²</span>
+              <span className="text-white text-lg font-bold">▲</span>
             </div>
           </div>
         </div>
@@ -1714,7 +1713,7 @@ const HomeTab: React.FC = () => {
           {isActive ? (
             <>
               {canClaim ? (
-                <span className="font-semibold text-green-400">Ready to Claim! ðŸŽ‰</span>
+                <span className="font-semibold text-green-400">Ready to Claim! 🎉</span>
               ) : (
                 <>
                   Next Claim in:{' '}
@@ -1782,7 +1781,7 @@ interface DailyTasksProps {
 }
 
 const SERVER_CONFIG = {
-  baseUrl: 'https://7a04fb8f-f6f0-44ff-81aa-4749b3cbe3cd.e1-us-east-azure.choreoapps.dev',
+  baseUrl: 'https://31d71452-591a-481f-8388-0bc42d884c2a.e1-us-east-azure.choreoapps.dev',
   endpoints: {
     telegram: '/api/telegram/check-membership',
     connect: '/api/frontend/connect',
@@ -2169,7 +2168,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
         
         // Show success message
         window.Telegram?.WebApp?.showPopup?.({
-          title: 'Task Completed! ðŸŽ‰',
+          title: 'Task Completed! 🎉',
           message: `You earned ${walletConfig.currencySymbol}${task.reward.toFixed(2)}`,
           buttons: [{ type: 'ok' }]
         });
@@ -2416,7 +2415,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                                 <Users className="w-3 h-3" />
                                 <span>
                                   {completedUsers}/{usersQuantity} users
-                                  {" "}â€¢ Remaining: {usersQuantity - completedUsers}
+                                  {" "}• Remaining: {usersQuantity - completedUsers}
                                 </span>
                               </div>
                               {isTaskLimitReached && (
@@ -2429,7 +2428,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
 
                           {taskErrors[task.id] && (
                             <p className="text-red-400 text-xs bg-red-500/10 px-2 py-1 rounded border border-red-500/20 whitespace-pre-line">
-                              âš ï¸ {taskErrors[task.id]}
+                              ⚠️ {taskErrors[task.id]}
                             </p>
                           )}
                         </div>
@@ -2492,7 +2491,7 @@ const DailyTasks: React.FC<DailyTasksProps> = ({
                                   Join Channel
                                 </>
                               ) : (
-                                "ðŸš€ Start Task"
+                                "🚀 Start Task"
                               )}
                             </button>
                           )}
@@ -2965,7 +2964,7 @@ const AdsDashboard: React.FC<{ userData?: UserData | null }> = ({ userData }) =>
   // Enhanced AdExtra handler with proper timeout and error handling (from 2nd code)
   const runAdExtra = async (adId: number, ad: Ad) => {
     if (typeof window.p_adextra !== 'function') {
-      showMessage('info', 'AdExtra initializingâ€¦ please try again in a moment');
+      showMessage('info', 'AdExtra initializing… please try again in a moment');
       concurrencyLockRef.current = false;
       setConcurrentLock(false);
       setIsWatchingAd(null);
@@ -3085,7 +3084,7 @@ const AdsDashboard: React.FC<{ userData?: UserData | null }> = ({ userData }) =>
     concurrencyLockRef.current = true;
     setConcurrentLock(true);
     setIsWatchingAd(adId);
-    showMessage('info', 'Preparing adâ€¦');
+    showMessage('info', 'Preparing ad…');
 
     try {
       // Handle different providers
@@ -3221,7 +3220,7 @@ const AdsDashboard: React.FC<{ userData?: UserData | null }> = ({ userData }) =>
               onClick={() => showAd(ad.id)}
               disabled={isAdDisabled(ad) || isWatchingAd === ad.id}
             >
-              {isWatchingAd === ad.id ? 'Watching Adâ€¦' : getButtonText(ad)}
+              {isWatchingAd === ad.id ? 'Watching Ad…' : getButtonText(ad)}
             </button>
           </div>
         </div>
@@ -3811,7 +3810,7 @@ function PaymentMethodList({
             />
             <div className="flex-1">
               <p className="text-sm font-medium text-white">{m.name}</p>
-              <p className="text-xs text-gray-400">â€¢ Min withdraw {walletConfig.currencySymbol}{m.minWithdrawal}</p>
+              <p className="text-xs text-gray-400">• Min withdraw {walletConfig.currencySymbol}{m.minWithdrawal}</p>
             </div>
             <span
               aria-hidden
@@ -3895,7 +3894,7 @@ function ProfileHeader({ onOpenWallet }: { onOpenWallet: () => void }) {
 
                 <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-gray-200/90">
                   <span className="rounded-md bg-black/30 px-2 py-1 border border-white/10">ID: {user.id}</span>
-                  <span className="text-gray-500">â€¢</span>
+                  <span className="text-gray-500">•</span>
                   <span className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 hover:bg-white/10 active:scale-[0.98] transition">Joined: {user.joined}</span>
                 </div>
               </div>
@@ -4269,7 +4268,7 @@ const ProfileTab = () => {
                             month: 'short', 
                             day: '2-digit',
                             year: 'numeric'
-                          })} â€¢ {new Date(tx.timestamp).toLocaleTimeString('en-US', {
+                          })} • {new Date(tx.timestamp).toLocaleTimeString('en-US', {
                             hour: '2-digit',
                             minute: '2-digit',
                             hour12: false
