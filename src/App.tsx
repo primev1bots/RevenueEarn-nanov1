@@ -2815,7 +2815,7 @@ const AdsDashboard: React.FC<{ userData?: UserData | null }> = ({ userData }) =>
         
         try {
           if (window.initCdTma) {
-            const show = await window.initCdTma({ id: "6090192" });
+            const show = await window.initCdTma({ id: "6097980" });
             window.showAd = show;
             setScriptLoaded(prev => ({ ...prev, onclicka: typeof window.showAd === 'function' }));
             console.log('Onclicka initialized successfully');
