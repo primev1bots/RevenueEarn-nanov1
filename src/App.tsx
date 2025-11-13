@@ -119,6 +119,7 @@ interface ReferralData {
   };
 }
 
+// UPDATED: Enhanced Transaction interface with account details
 interface Transaction {
   id: string;
   userId: number;
@@ -127,6 +128,12 @@ interface Transaction {
   description: string;
   timestamp: number;
   status: TransactionStatus;
+  method?: string;
+  accountNumber?: string;
+  accountDetails?: string;
+  paymentMethod?: string;
+  processedAt?: number;
+  rejectionReason?: string;
 }
 
 // Task Types
@@ -3743,7 +3750,7 @@ const FriendsTab = () => {
   )
 }
 
-// Profile Tab Component
+// Profile Tab Component - Updated Wallet Section
 const TX_PAGE_SIZE = 3;
 
 function PaymentLogo({
@@ -4004,14 +4011,22 @@ const ProfileTab = () => {
         totalWithdrawn: newTotalWithdrawn
       })
 
-      await addTransaction({
+      // Enhanced transaction data with account information
+      const transactionData = {
         userId: userData!.telegramId,
-        type: 'withdrawal',
+        type: 'withdrawal' as TransactionType,
         amount: -amt,
         description: `Withdrawal to ${selectedMeta?.name}`,
         timestamp: Date.now(),
-        status: 'pending'
-      })
+        status: 'pending' as TransactionStatus,
+        // Add account information for WithdrawalManagement
+        method: selectedMeta?.name,
+        accountNumber: accountNumber,
+        paymentMethod: selectedMeta?.name,
+        accountDetails: accountNumber
+      }
+
+      await addTransaction(transactionData)
 
       setSubmitting(false)
       setShowWithdraw(false)
@@ -4259,39 +4274,64 @@ const ProfileTab = () => {
             ) : (
               <>
                 <ul className="divide-y divide-white/10">
-                  {paginatedTxs.map((tx) => (
+                  {paginatedTxs.map((tx: any) => (
                     <li key={tx.id} className="flex items-center justify-between py-3">
-                      <div>
-                        <p className="text-sm font-medium">{tx.description}</p>
-                        <p className="text-xs text-gray-400">
-                          {new Date(tx.timestamp).toLocaleDateString('en-US', { 
-                            month: 'short', 
-                            day: '2-digit',
-                            year: 'numeric'
-                          })} • {new Date(tx.timestamp).toLocaleTimeString('en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false
-                          })}
-                        </p>
-                        <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium ${
-                          tx.status === 'completed' 
-                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                            : tx.status === 'pending'
-                            ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
-                            : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
-                        }`}>
-                          {tx.status === 'completed' ? 'Approved' : tx.status === 'pending' ? 'Pending' : 'Failed'}
-                        </span>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="text-sm font-medium">{tx.description}</p>
+                          <p
+                            className={[
+                              "text-sm font-semibold",
+                              tx.amount > 0 ? "text-emerald-400" : "text-rose-400",
+                            ].join(" ")}
+                          >
+                            {tx.amount > 0 ? '+' : ''}{walletConfig.currencySymbol}{Math.abs(tx.amount).toFixed(2)}
+                          </p>
+                        </div>
+                        
+                        {/* Show account number if available */}
+                        {(tx.accountNumber || tx.accountDetails) && (
+                          <div className="mb-2">
+                            <p className="text-xs text-gray-400">Account:</p>
+                            <p className="text-xs text-white font-mono bg-gray-700/50 p-1 rounded border border-gray-600/50">
+                              {tx.accountNumber || tx.accountDetails}
+                            </p>
+                          </div>
+                        )}
+
+                        {/* Show payment method if available */}
+                        {(tx.method || tx.paymentMethod) && (
+                          <div className="mb-2">
+                            <p className="text-xs text-gray-400">Method:</p>
+                            <p className="text-xs text-blue-300">
+                              {tx.method || tx.paymentMethod}
+                            </p>
+                          </div>
+                        )}
+
+                        <div className="flex items-center justify-between">
+                          <p className="text-xs text-gray-400">
+                            {new Date(tx.timestamp).toLocaleDateString('en-US', { 
+                              month: 'short', 
+                              day: '2-digit',
+                              year: 'numeric'
+                            })} • {new Date(tx.timestamp).toLocaleTimeString('en-US', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              hour12: false
+                            })}
+                          </p>
+                          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium ${
+                            tx.status === 'completed' 
+                              ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                              : tx.status === 'pending'
+                              ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
+                              : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
+                          }`}>
+                            {tx.status === 'completed' ? 'Approved' : tx.status === 'pending' ? 'Pending' : 'Failed'}
+                          </span>
+                        </div>
                       </div>
-                      <p
-                        className={[
-                          "text-sm font-semibold",
-                          tx.amount > 0 ? "text-emerald-400" : "text-rose-400",
-                        ].join(" ")}
-                      >
-                        {tx.amount > 0 ? '+' : ''}{walletConfig.currencySymbol}{Math.abs(tx.amount).toFixed(2)}
-                      </p>
                     </li>
                   ))}
                 </ul>
