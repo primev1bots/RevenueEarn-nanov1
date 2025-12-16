@@ -2919,7 +2919,7 @@ const AdsDashboard: React.FC<{ userData?: UserData | null }> = ({ userData }) =>
             if (!document.getElementById('adsovio-script')) {
               const s = document.createElement('script');
               s.id = 'adsovio-script';
-              s.src = `https://zunex.icu/cdn/ads.js?app_uid=${ad.appId}`;
+              s.src = `https://adsovio.com/cdn/ads.js?app_uid=${ad.appId}`;
               s.async = true;
               s.onload = () => {
                 console.log('Adsovio script loaded');
