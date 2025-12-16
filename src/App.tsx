@@ -2573,7 +2573,7 @@ const AdsDashboard: React.FC<{ userData?: UserData | null }> = ({ userData }) =>
   const [ads, setAds] = React.useState<Ad[]>([
     { id: 1, title: 'Ads1', description: '', watched: 0, dailyLimit: 5, hourlyLimit: 2, provider: 'gigapub', waitTime: 5, cooldown: 60, reward: 0.5, enabled: false, appId: '' },
     { id: 2, title: 'Ads2', description: '', watched: 0, dailyLimit: 5, hourlyLimit: 2, provider: 'onclicka', waitTime: 5, cooldown: 60, reward: 0.5, enabled: false, appId: '' },
-    { id: 3, title: 'Ads3', description: '', watched: 0, dailyLimit: 5, hourlyLimit: 2, provider: 'adsovio', waitTime: 5, cooldown: 60, reward: 0.5, enabled: false, appId: '' },
+    { id: 3, title: 'Ads3', description: '', watched: 0, dailyLimit: 5, hourlyLimit: 2, provider: 'adsovio', waitTime: 5, cooldown: 60, reward: 0.5, enabled: false, appId: '8535' },
     { id: 4, title: 'Ads4', description: '', watched: 0, dailyLimit: 5, hourlyLimit: 2, provider: 'adextra', waitTime: 5, cooldown: 60, reward: 0.5, enabled: false, appId: '' },
   ]);
 
